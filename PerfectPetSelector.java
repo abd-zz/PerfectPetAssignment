@@ -1,5 +1,7 @@
-import java.util.Scanner;
-
+import java.util.*;
+//Abdoul-Aziz Diagne
+//10/13/2026
+//program will evaluate user input and output a corresponding pet based on this
 public class PerfectPetSelector {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -11,7 +13,7 @@ public class PerfectPetSelector {
         }
         System.out.println("What is your favorite season?");
         String seasonFavorite = scanner.nextLine();
-        while(!checkString(seasonFavorite, "winter") && !checkString(seasonFavorite, "summer") && !checkString(seasonFavorite, "fall") && !checkString(seasonFavorite, "fall")) {
+        while(!checkString(seasonFavorite, "winter") && !checkString(seasonFavorite, "summer") && !checkString(seasonFavorite, "fall") && !checkString(seasonFavorite, "spring")) {
             System.out.println("That is not an option. Choose again (refer to autumn as fall)");
             seasonFavorite = scanner.nextLine();
         }
@@ -21,32 +23,40 @@ public class PerfectPetSelector {
             System.out.println("Your name starts with a letter. MAYBE SOMEDAY YOU WILL LEARN HOW TO SPELL YOUR OWN NAME (try again)");
         name = scanner.nextLine();
         }
-        if (colorFavorite.toLowerCase().equals("red")) {
-            if("aeiouAEIOU".indexOf(name.substring(0, 1)) != -1) {
-            System.out.println("You got a PANDA!");
+        switch(colorFavorite.toLowerCase()) {
+            case "red":
+            if ("aeiouAEIOU".indexOf(name.substring(0,1)) != -1) {
+                System.out.println("You got a PORCUPINE!");
+                break;
             } else {
-                System.out.println("You got a PORCUPINE");
+                System.out.println("You got a PANDA!");
+                break;
             }
-        } else if(colorFavorite.toLowerCase().equals("green")) {
-            if (checkString(seasonFavorite, "winter") && "aeiouAEIOU".indexOf(name.substring(0, 1)) == -1) {
-                System.out.println("You got a GIRAFFE!");
-            } else if (!checkString(seasonFavorite, "fall")) {
-                System.out.println("You got a DOG!");
-            } else {
-            System.out.println("You got a ROCK!");
-        }
-        } else if(colorFavorite.toLowerCase().equals("blue")) {
-            if (checkString(seasonFavorite, "fall")) {
-                System.out.println("You got a ALLIGATOR!");
-            } else if (checkString(seasonFavorite, "spring")) {
-                System.out.println("You got a OSTRITCH!");
-            } else if (!checkString(seasonFavorite, "summer") && "aeiouAEIOU".indexOf(name.substring(0, 1)) == -1 ) {
-                System.out.println("You got a AXOLOTL!");
-            } else {
-            System.out.println("You got a ROCK!");
-        }
-        } else {
-            System.out.println("You got a ROCK!");
+            case "blue":
+                if (checkString(seasonFavorite, "fall")) {
+                    System.out.println("You got an ALLIGATOR!");
+                    break;
+                } else if (checkString(seasonFavorite, "spring")) {
+                    System.out.println("You got an OSTRITCH!");
+                    break;
+                } else if (!checkString(seasonFavorite, "summer") && "aeiouAEIOU".indexOf(name.substring(0,1)) == -1) {
+                    System.out.println("You got an AXOLOTL!");
+                    break;
+                }
+            case "green":
+                if ("aeiouAEIOU".indexOf(name.substring(0,1)) == -1 && checkString(seasonFavorite, "winter")) {
+                    System.out.println("You got a GIRAFFE!");
+                    break;
+                } else if (!checkString(seasonFavorite, "fall") && checkString(colorFavorite, "green")) {
+                    System.out.println("You got a DOG!");
+                    break;
+                }
+            default:
+                if(checkString(seasonFavorite, "summer")) {
+                    System.out.println("You got a PONY!");
+                } else {
+                System.out.println("You got a ROCK!");
+                }
         }
         scanner.close();
     }
